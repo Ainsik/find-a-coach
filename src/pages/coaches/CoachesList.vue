@@ -4,9 +4,7 @@
 		<base-card>
 			<div class="controls">
 				<base-button mode="outline">Refresh</base-button>
-				<base-button link to="/register"
-					>Register as a Coach</base-button
-				>
+				<base-button link to="/register">Register as a Coach</base-button>
 			</div>
 			<ul v-if="hasCoaches">
 				<coach-item
@@ -26,10 +24,9 @@
 
 <script>
 import CoachItem from "@/components/coaches/CoachItem.vue";
-import BaseButton from "@/components/UI/BaseButton.vue";
 
 export default {
-	components: { CoachItem, BaseButton },
+	components: { CoachItem },
 	computed: {
 		filtredCoaches() {
 			return this.$store.getters["coaches/coaches"];
