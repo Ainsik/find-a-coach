@@ -1,4 +1,6 @@
-<template><section></section></template>
+<template>
+	<section></section>
+</template>
 
 <script>
 export default {};
