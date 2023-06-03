@@ -19,7 +19,7 @@ const router = createRouter({
 			children: [{ path: "contact", component: ContactCoach }],
 		},
 		{ path: "/register", component: CoachRegistration },
-		{ path: "/request", component: RequestReceived },
+		{ path: "/requests", component: RequestReceived },
 		{ path: "/:notFound(.*)", component: NotFound },
 	],
 });
