@@ -22,7 +22,7 @@ export default {
 
 		newRequest.id = responseData.name;
 		newRequest.coachId = payload.coachId;
-		context.commit("addRequest", responseData);
+		context.commit("addRequest", newRequest);
 	},
 	async fetchRequests(context) {
 		const coachId = context.rootGetters.userId;
