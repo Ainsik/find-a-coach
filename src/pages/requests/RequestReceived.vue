@@ -3,14 +3,14 @@
 		<p>{{ error }}</p>
 	</base-dialog>
 	<section>
-		<base-card
-			><header>
+		<base-card>
+			<header>
 				<h2>Requests Received</h2>
 			</header>
 			<base-spinner v-if="isLoading"></base-spinner>
 			<ul v-else-if="hasRequests && !isLoading">
 				<request-item
-					v-for="req in recivedRequests"
+					v-for="req in receivedRequests"
 					:key="req.id"
 					:email="req.userEmail"
 					:message="req.message"
@@ -33,7 +33,7 @@ export default {
 	},
 	components: { RequestItem },
 	computed: {
-		recivedRequests() {
+		receivedRequests() {
 			return this.$store.getters["requests/requests"];
 		},
 		hasRequests() {
