@@ -121,7 +121,7 @@ menu {
 
 .dialog-enter-to,
 .dialog-leave-from {
-  opacity: 0;
+  opacity: 1;
   transform: scale(1);
 }
 </style>
