@@ -1,42 +1,42 @@
 <template>
-  <li>
-    <div>
-      <a :href="emailLink">{{ email }}</a>
-    </div>
-    <p>{{ message }}</p>
-  </li>
+  <span class="badge" :class="type">
+    {{ text }}
+  </span>
 </template>
 
 <script>
 export default {
-  props: ["email", "message"],
+  props: ["type", "title"],
   computed: {
-    emailLink() {
-      return `mailto:${this.email}`;
+    text() {
+      return this.title.toUpperCase();
     },
   },
 };
 </script>
 
 <style scoped>
-li {
-  margin: 1rem 0;
-  border: 1px solid #ccc;
-  padding: 1rem;
+.badge {
+  background-color: #ccc;
+  color: #252525;
+  border-radius: 30px;
+  padding: 0.5rem 1.5rem;
+  display: inline-block;
+  margin-right: 0.5rem;
 }
 
-a {
-  color: #3d008d;
-  text-decoration: none;
-  font-weight: bold;
+.frontend {
+  background-color: #3d008d;
+  color: white;
 }
 
-a:hover,
-a:active {
-  color: #8d007a;
+.backend {
+  background-color: #71008d;
+  color: white;
 }
 
-p {
-  margin: 0.5rem 0 0 0;
+.career {
+  background-color: #8d006e;
+  color: white;
 }
 </style>

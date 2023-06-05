@@ -84,11 +84,26 @@ export default {
   emits: ["save-data"],
   data() {
     return {
-      firstName: { val: "", isValid: true },
-      lastName: { val: "", isValid: true },
-      description: { val: "", isValid: true },
-      rate: { val: null, isValid: true },
-      areas: { val: [], isValid: true },
+      firstName: {
+        val: "",
+        isValid: true,
+      },
+      lastName: {
+        val: "",
+        isValid: true,
+      },
+      description: {
+        val: "",
+        isValid: true,
+      },
+      rate: {
+        val: null,
+        isValid: true,
+      },
+      areas: {
+        val: [],
+        isValid: true,
+      },
       formIsValid: true,
     };
   },
@@ -133,6 +148,7 @@ export default {
         rate: this.rate.val,
         areas: this.areas.val,
       };
+
       this.$emit("save-data", formData);
     },
   },

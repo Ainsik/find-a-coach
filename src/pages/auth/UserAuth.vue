@@ -3,7 +3,7 @@
     <base-dialog :show="!!error" title="An error occurred" @close="handleError">
       <p>{{ error }}</p>
     </base-dialog>
-    <base-dialog :show="isLoading" fixed title="Authenticating...">
+    <base-dialog :show="isLoading" title="Authenticating..." fixed>
       <base-spinner></base-spinner>
     </base-dialog>
     <base-card>
@@ -41,6 +41,22 @@ export default {
       error: null,
     };
   },
+  computed: {
+    submitButtonCaption() {
+      if (this.mode === "login") {
+        return "Login";
+      } else {
+        return "Signup";
+      }
+    },
+    switchModeButtonCaption() {
+      if (this.mode === "login") {
+        return "Signup instead";
+      } else {
+        return "Login instead";
+      }
+    },
+  },
   methods: {
     async submitForm() {
       this.formIsValid = true;
@@ -68,8 +84,8 @@ export default {
         }
         const redirectUrl = "/" + (this.$route.query.redirect || "coaches");
         this.$router.replace(redirectUrl);
-      } catch (error) {
-        this.error = error.message || "Failed to authenticate, try again.";
+      } catch (err) {
+        this.error = err.message || "Failed to authenticate, try later.";
       }
 
       this.isLoading = false;
@@ -83,22 +99,6 @@ export default {
     },
     handleError() {
       this.error = null;
-    },
-  },
-  computed: {
-    submitButtonCaption() {
-      if (this.mode === "login") {
-        return "Login";
-      } else {
-        return "Signup";
-      }
-    },
-    switchModeButtonCaption() {
-      if (this.mode === "login") {
-        return "Signup instead";
-      } else {
-        return "Login instead";
-      }
     },
   },
 };

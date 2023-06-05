@@ -15,9 +15,12 @@ export default {
   },
   async auth(context, payload) {
     const mode = payload.mode;
-    let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]`;
+    let url =
+      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]";
+
     if (mode === "signup") {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]`;
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]";
     }
     const response = await fetch(url, {
       method: "POST",
@@ -27,15 +30,18 @@ export default {
         returnSecureToken: true,
       }),
     });
+
     const responseData = await response.json();
 
     if (!response.ok) {
       const error = new Error(
-        responseData.message || "Failed to authenticate."
+        responseData.message || "Failed to authenticate. Check your login data."
       );
       throw error;
     }
+
     const expiresIn = +responseData.expiresIn * 1000;
+    // const expiresIn = 5000;
     const expirationDate = new Date().getTime() + expiresIn;
 
     localStorage.setItem("token", responseData.idToken);
@@ -43,7 +49,7 @@ export default {
     localStorage.setItem("tokenExpiration", expirationDate);
 
     timer = setTimeout(function () {
-      context.dispatch("setAutoLogout");
+      context.dispatch("autoLogout");
     }, expiresIn);
 
     context.commit("setUser", {
@@ -55,6 +61,7 @@ export default {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
     const tokenExpiration = localStorage.getItem("tokenExpiration");
+
     const expiresIn = +tokenExpiration - new Date().getTime();
 
     if (expiresIn < 0) {
@@ -62,7 +69,7 @@ export default {
     }
 
     timer = setTimeout(function () {
-      context.dispatch("setAutoLogout");
+      context.dispatch("autoLogout");
     }, expiresIn);
 
     if (token && userId) {

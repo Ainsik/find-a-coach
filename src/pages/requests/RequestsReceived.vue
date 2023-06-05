@@ -28,16 +28,18 @@
 </template>
 
 <script>
-import RequestItem from "@/components/requests/RequestItem.vue";
+import RequestItem from "../../components/requests/RequestItem.vue";
 
 export default {
+  components: {
+    RequestItem,
+  },
   data() {
     return {
       isLoading: false,
       error: null,
     };
   },
-  components: { RequestItem },
   computed: {
     receivedRequests() {
       return this.$store.getters["requests/requests"];
@@ -45,6 +47,9 @@ export default {
     hasRequests() {
       return this.$store.getters["requests/hasRequests"];
     },
+  },
+  created() {
+    this.loadRequests();
   },
   methods: {
     async loadRequests() {
@@ -59,9 +64,6 @@ export default {
     handleError() {
       this.error = null;
     },
-  },
-  created() {
-    this.loadRequests();
   },
 };
 </script>

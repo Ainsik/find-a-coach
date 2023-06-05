@@ -9,11 +9,11 @@
     <section>
       <base-card>
         <header>
-          <h2>Intrested? Reach out now!</h2>
+          <h2>Interested? Reach out now!</h2>
           <base-button link :to="contactLink">Contact</base-button>
         </header>
-        <router-view></router-view
-      ></base-card>
+        <router-view></router-view>
+      </base-card>
     </section>
     <section>
       <base-card>
@@ -23,8 +23,8 @@
           :type="area"
           :title="area"
         ></base-badge>
-        <p>{{ description }}</p></base-card
-      >
+        <p>{{ description }}</p>
+      </base-card>
     </section>
   </div>
 </template>
@@ -39,10 +39,7 @@ export default {
   },
   computed: {
     fullName() {
-      return `${this.selectedCoach.firstName} ${this.selectedCoach.lastName}`;
-    },
-    contactLink() {
-      return `${this.$route.path}/${this.id}/contact`;
+      return this.selectedCoach.firstName + " " + this.selectedCoach.lastName;
     },
     areas() {
       return this.selectedCoach.areas;
@@ -53,6 +50,9 @@ export default {
     description() {
       return this.selectedCoach.description;
     },
+    contactLink() {
+      return this.$route.path + "/" + this.id + "/contact";
+    },
   },
   created() {
     this.selectedCoach = this.$store.getters["coaches/coaches"].find(
@@ -61,5 +61,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

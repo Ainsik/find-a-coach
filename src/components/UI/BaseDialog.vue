@@ -98,13 +98,6 @@ menu {
   margin: 0;
 }
 
-@media (min-width: 768px) {
-  dialog {
-    left: calc(50% - 20rem);
-    width: 40rem;
-  }
-}
-
 .dialog-enter-from,
 .dialog-leave-to {
   opacity: 0;
@@ -123,5 +116,12 @@ menu {
 .dialog-leave-from {
   opacity: 1;
   transform: scale(1);
+}
+
+@media (min-width: 768px) {
+  dialog {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
 }
 </style>
