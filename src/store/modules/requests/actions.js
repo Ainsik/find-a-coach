@@ -4,8 +4,9 @@ export default {
       userEmail: payload.email,
       message: payload.message,
     };
+    const token = context.rootGetters.token;
     const response = await fetch(
-      `https://find-a-coach-b69d3-default-rtdb.europe-west1.firebasedatabase.app/coaches/${payload.coachId}.json`,
+      `https://find-a-coach-b69d3-default-rtdb.europe-west1.firebasedatabase.app/coaches/${payload.coachId}.json?auth=${token}`,
       {
         method: "POST",
         body: JSON.stringify(newRequest),
